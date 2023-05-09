@@ -11,7 +11,10 @@ Build ubuntu20.04-py38 for example.
 Create a directory to map docker home file like `/home/ycwang/work/tensorflow-gpu/ycwang`
 
 Mapping directory:  `/home/ycwang/work/tensorflow-gpu/` -->  `/home`
-Mapping user: `ycwang --> ycwang` Make sure docker user is the current host user
+
+Mapping user: `ycwang --> ycwang` 
+
+Make sure docker user is the current host user
 
 ## Build 
 
