@@ -62,7 +62,10 @@ RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/
         pkg-config \
         software-properties-common \
         unzip \
-        sudo
+        sudo \
+        net-tools \
+        git \
+        vim
 
 # Install TensorRT if not building for PowerPC
 # NOTE: libnvinfer uses cuda11.6 versions

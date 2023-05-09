@@ -21,7 +21,7 @@ Change user name from Dockerfile if needed
 
 ```
 cd tensorflow/ubuntu20.04-py38
-docker build -t  self-tensorflow-gpu .
+docker build -t self-tensorflow-gpu .
 ```
 
 ## Use docker image
