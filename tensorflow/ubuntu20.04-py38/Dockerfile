@@ -57,6 +57,7 @@ RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/
         libcurand-${CUDA/./-} \
         libcusolver-${CUDA/./-} \
         libcusparse-${CUDA/./-} \
+        libgdal-dev \
         curl \
         libcudnn8=${CUDNN}+cuda${CUDA} \
         pkg-config \
@@ -65,7 +66,9 @@ RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/
         sudo \
         net-tools \
         git \
-        vim
+        vim \
+        wget \
+        zip
 
 # Install TensorRT if not building for PowerPC
 # NOTE: libnvinfer uses cuda11.6 versions
@@ -90,13 +93,20 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
 
+# RUN apt install software-properties-common -y
+# RUN add-apt-repository ppa:deadsnakes/ppa -y
+
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip
 
+# RUN rm /usr/bin/python3
+# RUN ln -sf /usr/bin/python3.9 /usr/bin/python3
+
 RUN python3 -m pip --no-cache-dir install --upgrade \
-    "pip<20.3" \
-    setuptools
+    pip \
+    setuptools \
+    PySocks
 
 # Some TF tools expect a "python" binary
 RUN ln -s $(which python3) /usr/local/bin/python
@@ -108,9 +118,9 @@ RUN ln -s $(which python3) /usr/local/bin/python
 #   tf-nightly-gpu
 # Set --build-arg TF_PACKAGE_VERSION=1.11.0rc0 to install a specific version.
 # Installs the latest version by default.
-ARG TF_PACKAGE=tensorflow
-ARG TF_PACKAGE_VERSION=
-RUN python3 -m pip install --no-cache-dir ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
+#ARG TF_PACKAGE=tensorflow
+#ARG TF_PACKAGE_VERSION=
+#RUN python3 -m pip install --no-cache-dir ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
 
 # Change USERNAME if needed
 ARG USERNAME=ycwang
