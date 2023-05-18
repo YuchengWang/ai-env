@@ -63,3 +63,8 @@ RUN adduser --disabled-password --gecos '' ${USERNAME}
 RUN adduser ${USERNAME} sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ${USERNAME}
+
+WORKDIR /home/${USERNAME}
+
+# Start a shell in the user's home directory
+CMD ["/bin/bash"]
