@@ -40,9 +40,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         zip
 
-# Link the libcuda stub to the location where tensorflow is searching for it and reconfigure
-RUN ldconfig -C /etc/ld.so.cache
-
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
 
