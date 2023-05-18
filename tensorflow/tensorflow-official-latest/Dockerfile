@@ -54,6 +54,9 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
     setuptools \
     PySocks
 
+COPY bashrc /etc/bash.bashrc
+RUN chmod a+rwx /etc/bash.bashrc
+
 # Change USERNAME if needed
 ARG USERNAME=ycwang
 
