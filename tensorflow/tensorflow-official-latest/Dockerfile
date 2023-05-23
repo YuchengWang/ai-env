@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         libgdal-dev \
         net-tools \
+        numactl \
         pkg-config \
         sudo \
         unzip \
